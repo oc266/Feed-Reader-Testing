@@ -96,13 +96,16 @@ $(function() {
       expect(entries.length).toBeGreaterThan(0);
     });
   });
-    /* TODO: Write a new test suite named "Initial Entries" */
 
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+  /* A test suite named 'New Feed Selection' to test that
+   * the content changes on calling loadFeed function
+   */
+  describe('New Feed Selection', function () {
+    /* A test to ensure that when a new feed is loaded by the function
+     * loadFeed the content actually changes
+     */
 
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+  });
+
 }());
