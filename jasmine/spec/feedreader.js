@@ -68,7 +68,7 @@ $(function() {
      * click and hide on second.
      */
     it('toggles visibility on clicking the menu icon', function() {
-      const menu_icon = document.querySelector('.menu-icon-link');
+      let menu_icon = document.querySelector('.menu-icon-link');
       // Click the menu icon for the first time and check the menu is showing
       menu_icon.click();
       expect(body.classList.contains('menu-hidden')).toBe(false);
@@ -84,13 +84,20 @@ $(function() {
    * container once the loadFeed function has been called.
    */
   describe('Initial Entries', function() {
+
+    beforeEach(function(done) {
+      loadFeed(0, done());
+    });
     /* A test to ensure that upon loadFeed function being called
      * there is at least one .entry element in the .feed container.
      */
-    // WRITE TEST
+    it('has one or more entry in the feed', function() {
+      let entries = document.querySelectorAll('.feed .entry');
+      expect(entries.length).toBeGreaterThan(0);
+    });
   });
     /* TODO: Write a new test suite named "Initial Entries" */
-  
+
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 
