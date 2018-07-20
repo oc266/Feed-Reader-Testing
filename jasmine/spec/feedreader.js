@@ -49,7 +49,13 @@ $(function() {
     });
   });
 
+  /* A test suite to named "The menu" which tests whether
+   * the menu is hidden by default and wheter it toggles
+   * visibility on clicking the menu icon
+   */
+  describe('The menu', function() {
 
+  });
     /* TODO: Write a new test suite named "The menu" */
 
 
