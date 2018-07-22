@@ -79,6 +79,7 @@ $(function() {
     });
   });
 
+
   /* A test suite named 'Initial Entries' which tests that
    * there is at least one .entry element in the .feed
    * container once the loadFeed function has been called.
@@ -105,21 +106,37 @@ $(function() {
 
 
   /* A test suite named 'New Feed Selection' to test that
-   * the content changes on calling loadFeed function
+   * the content changes when a new feed is loaded by
+   * calling loadFeed function
    */
   describe('New Feed Selection', function () {
-    /* A test to ensure that when a new feed is loaded by the function
-     * loadFeed the content actually changes
-     */
+    let firstFeed, secondFeed;
 
+    /* Use callback functions so that the first feed loads before
+     * starting to load the second and so that feeds load before
+     * performing the test.
+     */
+     beforeEach(function(done) {
+       // Load the second feed of allFeeds
+       loadFeed(1, function() {
+         // And store this feed in variable firstFeed
+         firstFeed = document.querySelector('.feed').innerHTML;
+
+         // Load the first feed of allFeeds
+         loadFeed(0, function() {
+           // And store this feed in variable secondFeed
+           secondFeed = document.querySelector('.feed').innerHTML;
+           done();
+         });
+       });
+     });
+
+     /* A test to ensure that when a new feed is loaded by the function
+      * loadFeed the content actually changes
+      */
+     it('should change the content when loadFeed is called', function() {
+       expect(firstFeed).not.toBe(secondFeed);
+     });
   });
 
-
-
-    /* TODO: Write a new test suite named "New Feed Selection" */
-
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
 }());
