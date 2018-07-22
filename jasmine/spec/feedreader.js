@@ -68,7 +68,7 @@ $(function() {
      * click and hide on second.
      */
     it('toggles visibility on clicking the menu icon', function() {
-      let menu_icon = document.querySelector('.menu-icon-link');
+      const menu_icon = document.querySelector('.menu-icon-link');
       // Click the menu icon for the first time and check the menu is showing
       menu_icon.click();
       expect(body.classList.contains('menu-hidden')).toBe(false);
@@ -86,13 +86,19 @@ $(function() {
   describe('Initial Entries', function() {
 
     beforeEach(function(done) {
-      loadFeed(0, done());
+      loadFeed(0, function() {
+        done()
+      });
     });
     /* A test to ensure that upon loadFeed function being called
      * there is at least one .entry element in the .feed container.
      */
     it('has one or more entry in the feed', function() {
-      let entries = document.querySelectorAll('.feed .entry');
+      // Get all .entry elements which are children of .feed
+      const feed = document.querySelector('.feed');
+      const entries = feed.getElementsByClassName('entry');
+
+      // Test that there is at least one entry
       expect(entries.length).toBeGreaterThan(0);
     });
   });
@@ -108,4 +114,12 @@ $(function() {
 
   });
 
+
+
+    /* TODO: Write a new test suite named "New Feed Selection" */
+
+        /* TODO: Write a test that ensures when a new feed is loaded
+         * by the loadFeed function that the content actually changes.
+         * Remember, loadFeed() is asynchronous.
+         */
 }());
